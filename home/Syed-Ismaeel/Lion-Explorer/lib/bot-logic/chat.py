@@ -25,3 +25,9 @@ if __name__ == "__main__":
         print(get_response(sys.argv[1]))
     else:
         print("🦁 Lion-Bot: Waiting for directive.")
+
+if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        print(get_response(sys.argv[1]))
+    else:
+        print("🦁 Lion-Bot: Waiting for directive.")
