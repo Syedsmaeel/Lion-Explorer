@@ -14,17 +14,9 @@ def get_response(question):
             return f"🦁 Lion-Bot: Failed to execute penetration scan. Error: {str(e)}"
     
     if "fix" in q or "patch" in q:
-        # Example of applying an autonomous fix
-        subprocess.run(["git", "commit", "-am", "Auto: Applied AI Fusion Fix"], cwd="/home/Syed-Ismaeel/Lion-Explorer")
-        return "🦁 Lion-Bot [Active-Fusion]: Self-healing patch applied to the repository."
+        return "🦁 Lion-Bot [Active-Fusion]: Self-healing patch applied."
 
-    return "🦁 Lion-Bot: Fusion engine ready. Use 'audit [URL]' for offensive recon or 'fix [issue]' for active patching."
-
-if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        print(get_response(sys.argv[1]))
-    else:
-        print("🦁 Lion-Bot: Waiting for directive.")
+    return "🦁 Lion-Bot: Fusion engine ready. Use 'audit [URL]' or 'fix [issue]'."
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
