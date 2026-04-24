@@ -1,0 +1,9 @@
+services:
+  - type: worker
+    name: lion-explorer-orchestrator
+    runtime: python
+    buildCommand: "chmod +x lib/maintenance/orchestrator.sh"
+    startCommand: "./lib/maintenance/orchestrator.sh"
+    envVars:
+      - key: GITHUB_TOKEN
+        sync: false
