@@ -1,0 +1,21 @@
+name: Lion Explorer Project Factory
+on:
+  repository_dispatch:
+    types: [create-project]
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Synthesize Project
+        run: |
+          python3 lib/ai-training/factory/creator.py "${{ github.event.client_payload.name }}" "${{ github.event.client_payload.requirements }}"
+          git config user.name "Lion Explorer Factory"
+          git config user.email "factory@lionexplorer.io"
+          git add .
+          git commit -m "Auto: Synthesized new Fusion Project: ${{ github.event.client_payload.name }}"
+          git push
