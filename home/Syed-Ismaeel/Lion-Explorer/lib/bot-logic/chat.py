@@ -1,3 +1,5 @@
+import sys, subprocess, os
+from lib.auto_engineer import patcher
 import sys
 import subprocess
 import os
