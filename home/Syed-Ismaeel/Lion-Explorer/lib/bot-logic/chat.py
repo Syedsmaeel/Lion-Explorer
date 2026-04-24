@@ -5,18 +5,25 @@ import os
 def get_response(question):
     q = question.lower()
     
-    if "penetrate" in q or "audit" in q:
+    # 1. Complex Reasoning: Delegate to OpenClaw
+    if "deep" in q or "complex" in q or "hack" in q:
         try:
-            target = [w for w in q.split() if w.startswith("http")][0]
-            result = subprocess.check_output(["/home/Syed-Ismaeel/.local/bin/lion", "audit", target], text=True, stderr=subprocess.STDOUT)
-            return f"🦁 Lion-Bot [Offensive Mode]: Analysis for {target}:\n\n{result}"
+            print("🦁 Lion-Bot [Agentic Mode]: Delegating to OpenClaw Engine...")
+            result = subprocess.check_output([
+                "python3", "/home/Syed-Ismaeel/Lion-Explorer/lib/ai-training/plugins/openclaw/main.py",
+                "--task", "audit", "--target", question.split()[-1]
+            ], text=True, stderr=subprocess.STDOUT)
+            return f"🦁 Lion-Bot [OpenClaw Analysis]:\n\n{result}"
         except Exception as e:
-            return f"🦁 Lion-Bot: Failed to execute penetration scan. Error: {str(e)}"
+            return f"🦁 Lion-Bot: Agentic delegation failed. Error: {str(e)}"
     
-    if "fix" in q or "patch" in q:
-        return "🦁 Lion-Bot [Active-Fusion]: Self-healing patch applied."
+    # 2. Fast/Surface Mode: Use native Fusion Toolkit
+    if "audit" in q or "penetrate" in q:
+        target = question.split()[-1]
+        result = subprocess.check_output(["/home/Syed-Ismaeel/.local/bin/lion", "audit", target], text=True, stderr=subprocess.STDOUT)
+        return f"🦁 Lion-Bot [Offensive Mode]: Analysis for {target}:\n\n{result}"
 
-    return "🦁 Lion-Bot: Fusion engine ready. Use 'audit [URL]' or 'fix [issue]'."
+    return "🦁 Lion-Bot: Fusion Hub ready. Use 'audit [URL]' for fast scans or 'deep audit [URL]' for AI-Agent research."
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
